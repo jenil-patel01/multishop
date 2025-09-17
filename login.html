@@ -20,6 +20,21 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       width: 300px;
+      position: relative; /* so arrow can be positioned inside */
+    }
+
+    .back-arrow {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #333;
+      user-select: none;
+    }
+
+    .back-arrow:hover {
+      color: #007bff;
     }
 
     h2 {
@@ -77,6 +92,12 @@
 <body>
 
   <div class="login-container">
+    <!-- Back Arrow -->
+    <div class="back-arrow" onclick="window.location.href='index.html'" 
+         title="Go Home" role="button" tabindex="0" aria-label="Go to home page">
+      &#8592;
+    </div>
+
     <h2>Login</h2>
     <form id="loginForm">
       <div class="form-group">
