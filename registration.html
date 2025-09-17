@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e2e2e2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .register-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 340px;
+      overflow-y: auto;
+      max-height: 95vh;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+    }
+
+    .name-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .name-field {
+      flex: 1;
+    }
+
+    .login-redirect {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .login-redirect a {
+      color: #28a745;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .login-redirect a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-container">
+    <h2>Register</h2>
+    <form id="registerForm">
+      
+      <!-- First & Last Name -->
+      <div class="form-group name-row">
+        <div class="name-field">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName">
+          <small class="error" id="firstNameError"></small>
+        </div>
+        <div class="name-field">
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName">
+          <small class="error" id="lastNameError"></small>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type="text" id="address">
+        <small class="error" id="addressError"></small>
+      </div>
+
+      <!-- Number -->
+      <div class="form-group">
+        <label for="number">Number:</label>
+        <input type="text" id="number">
+        <small class="error" id="numberError"></small>
+      </div>
+
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username">
+        <small class="error" id="usernameError"></small>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email">
+        <small class="error" id="emailError"></small>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password">
+        <small class="error" id="passwordError"></small>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword">
+        <small class="error" id="confirmPasswordError"></small>
+      </div>
+
+      <!-- Register Button -->
+      <button type="submit">Register</button>
+    </form>
+
+    <!-- Login Redirect Link -->
+    <div class="login-redirect">
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const address = document.getElementById("address").value.trim();
+      const number = document.getElementById("number").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      // Get error elements
+      const firstNameError = document.getElementById("firstNameError");
+      const lastNameError = document.getElementById("lastNameError");
+      const addressError = document.getElementById("addressError");
+      const numberError = document.getElementById("numberError");
+      const usernameError = document.getElementById("usernameError");
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+      const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+      // Reset all errors
+      [firstNameError, lastNameError, addressError, numberError,
+       usernameError, emailError, passwordError, confirmPasswordError].forEach(el => {
+        el.style.display = "none";
+      });
+
+      let valid = true;
+
+      // First Name
+      if (!firstName) {
+        firstNameError.textContent = "First name is required.";
+        firstNameError.style.display = "block";
+        valid = false;
+      }
+
+      // Last Name
+      if (!lastName) {
+        lastNameError.textContent = "Last name is required.";
+        lastNameError.style.display = "block";
+        valid = false;
+      }
+
+      // Address
+      if (!address) {
+        addressError.textContent = "Address is required.";
+        addressError.style.display = "block";
+        valid = false;
+      }
+
+      // Number
+      if (!number) {
+        numberError.textContent = "Phone number is required.";
+        numberError.style.display = "block";
+        valid = false;
+      } else if (!/^\d{7,15}$/.test(number)) {
+        numberError.textContent = "Enter a valid number (7–15 digits).";
+        numberError.style.display = "block";
+        valid = false;
+      }
+
+      // Username
+      if (!username) {
+        usernameError.textContent = "Username is required.";
+        usernameError.style.display = "block";
+        valid = false;
+      }
+
+      // Email
+      if (!email) {
+        emailError.textContent = "Email is required.";
+        emailError.style.display = "block";
+        valid = false;
+      } else if (!validateEmail(email)) {
+        emailError.textContent = "Enter a valid email.";
+        emailError.style.display = "block";
+        valid = false;
+      }
+
+      // Password
+      if (!password) {
+        passwordError.textContent = "Password is required.";
+        passwordError.style.display = "block";
+        valid = false;
+      } else if (password.length < 6) {
+        passwordError.textContent = "Password must be at least 6 characters.";
+        passwordError.style.display = "block";
+        valid = false;
+      }
+
+      // Confirm Password
+      if (confirmPassword !== password) {
+        confirmPasswordError.textContent = "Passwords do not match.";
+        confirmPasswordError.style.display = "block";
+        valid = false;
+      }
+
+      // Submit success
+      if (valid) {
+        alert("Registration successful! (client-side only)");
+        // Add logic to send data to server here if needed
+      }
+    });
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-page" class="admin-login-panel-container">
+        <div class="login-form text-center rounded shadow bg-white overflow-hidden">
+            <h4 class="bg-dark text-white py-4">ADMIN LOGIN PANEL</h4>
+            <div class="p-4">
+                <p id="loginAlert" class="mb-3" style="display: none;"></p>
+                <div class="mb-3">
+                    <input type="text" id="AdminNameTextBox" class="form-control shadow-none text-center" placeholder="Admin Name" required>
+                </div>
+                <div class="mb-4">
+                    <input type="password" id="AdminPassTextBox" class="form-control shadow-none text-center" placeholder="Password" required>
+                </div>
+                <button id="LoginButton" class="btn btn-success w-100">LOGIN</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

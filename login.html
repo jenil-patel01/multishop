@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Selling Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .register-btn {
+      background-color: #007bff;
+    }
+
+    .register-btn:hover {
+      background-color: #0069d9;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" required>
+        <small class="error" id="usernameError"></small>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <small class="error" id="passwordError"></small>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Register Button -->
+    <button class="register-btn" onclick="window.location.href='registration.html'">Register</button>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // Prevent form submission
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      const usernameError = document.getElementById("usernameError");
+      const passwordError = document.getElementById("passwordError");
+
+      // Hide all errors initially
+      usernameError.style.display = "none";
+      passwordError.style.display = "none";
+
+      let valid = true;
+
+      // Username validation
+      if (!username) {
+        usernameError.textContent = "Username is required.";
+        usernameError.style.display = "block";
+        valid = false;
+      }
+
+      // Password validation
+      if (!password) {
+        passwordError.textContent = "Password is required.";
+        passwordError.style.display = "block";
+        valid = false;
+      } else if (password.length < 6) {
+        passwordError.textContent = "Password must be at least 6 characters.";
+        passwordError.style.display = "block";
+        valid = false;
+      }
+
+      if (valid) {
+        // You can replace this with real login logic
+        alert("Login successful! (client-side only)");
+      }
+    });
+  </script>
+
+</body>
+</html>
