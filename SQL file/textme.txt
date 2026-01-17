@@ -1,0 +1,4 @@
+db name = multishop
+
+adminname= "admin"
+password="123"
